@@ -1,5 +1,7 @@
 # Hepworth Training and Transfer Learning README
 
+### FOS/TAC prediciton
+
 ## Hepworth Training:
 This approach utilizes an out-of-fold prediction model. The best-performing model was selected through a five-fold cross-validation evaluation using the **Hepworth Trial 1 Brewery dataset**.
 
@@ -23,7 +25,9 @@ To account for **recalibration**, **10 additional days from each split** have be
 
 ### File Structure:
 - **best_model_fold_4.keras** → Trained model from Hepworth dataset
-- **WASE_Trial2_Cook_Cleaned.csv** → Processed dataset for transfer learning
+- **cook_data_Cleaned.csv** → Processed dataset for transfer learning
+- **hepworth_data_Cleaned.csv** → Preposed base dataset used to train base model
+- **robust_scaler.joblib** → Scaler original base dataset  
 - **README.txt** → This documentation
 
 For further details, refer to the project documentation or contact the development team.
