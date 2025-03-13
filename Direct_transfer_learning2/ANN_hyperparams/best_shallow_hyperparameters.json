@@ -1,0 +1,11 @@
+{
+    "num_layers": 1,
+    "units_0": 16,
+    "batch_norm_0": false,
+    "dropout_0": true,
+    "learning_rate": 0.0012405181050498832,
+    "units_1": 64,
+    "batch_norm_1": false,
+    "dropout_1": false,
+    "dropout_rate_0": 0.2
+}
