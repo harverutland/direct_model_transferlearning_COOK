@@ -1,2 +1,0 @@
-Accuracy,Precision (Macro),Recall (Macro),F1-score (Macro),Class distribution
-1.0,1.0,1.0,1.0,"Counter({0: 11, 1: 4})"
