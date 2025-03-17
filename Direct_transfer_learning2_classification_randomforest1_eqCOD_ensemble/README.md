@@ -1,33 +1,34 @@
+##############################
 # Hepworth Training and Transfer Learning README
+##############################
+## Overview ##
+This project utilizes a transfer learning approach with classification techniques to predict Chemical Oxygen Demand (COD) ranges in the equalisation tank, specifically designed for contexts with limited data availability. The model architecture employs a Random Forest classifier within a voting classifier framework.
 
-### FOS/TAC prediciton
+## Hepworth Training ##
+The foundational model was developed using a five-fold cross-validation method on the Hepworth Trial 1 Brewery dataset.
 
-## Hepworth Training:
-This approach utilizes an out-of-fold prediction model. The best-performing model was selected through a five-fold cross-validation evaluation using the **Hepworth Trial 1 Brewery dataset**.
+Training Dataset: Utilized an interpolated daily dataset from the Hepworth dataset.
+Model File: The optimal model is stored as 'best_model_fold_4.keras' in this directory.
 
-- The model was trained on an **interpolated daily dataset** derived from the Hepworth dataset.
-- The trained model is included in this directory and saved as **'best_model_fold_4.keras'**.
+## Transfer Learning ##
+This phase extends the Hepworth model to classify COD ranges, adapting it to a new dataset via a robust transfer learning protocol.
 
-## Transfer Learning:
-A **cleaned version of the WASE Trial 2 dataset** from the **Cook site** has been added. This dataset has been refined to match the key features identified through the feature importance analysis of the original Hepworth model.
+Initial Models: Developed using 5-fold cross-validation with random splits, available in 'base_training_ml_pipeline1.iynb'.
+Voting Classifier: Further elaborated in 'transfer_learning_ml_pipeline1.ipynb', which also evaluates the model on an alternative field trial dataset.
+Scaler Usage: The scaler from the initial training phase is employed to preprocess the new dataset, ensuring data consistency across models.
 
-- The machine learning pipeline **retrains the last two neurons** of the Hepworth model using the Cook dataset.
+## Implementation Methodology ##
+Designed to function as a soft sensor, the dataset is bifurcated into two distinct partitions for training and validation:
 
-## Implementation Methodology:
-Since this model is intended for use as a **soft sensor**, the dataset is **split into two partitions**:
+First Half - Primarily used for model training, with subsequent predictions generated for the second half.
+Second Half - Similarly employed for training, with predictions aimed at the first half.
+Recalibration Measures: To enhance model reliability, an additional 10 days from each partition are interchanged and incorporated into the training of the opposite half.
 
-1. **First Half** - Used for training, then predictions are made on the second half.
-2. **Second Half** - Used for training, then predictions are made on the first half.
+## File Structure ##
+best_model_fold_4.keras - The trained model from the initial Hepworth dataset.
+cook_data_Cleaned.csv - Prepared dataset for transfer learning application.
+hepworth_data_Cleaned.csv - The base dataset used for initial model training.
+robust_scaler.joblib - Scaler file for data normalization.
+README.txt - Documentation file for this directory.
 
-To account for **recalibration**, **10 additional days from each split** have been injected into the opposite partition.
-
----
-
-### File Structure:
-- **best_model_fold_4.keras** → Trained model from Hepworth dataset
-- **cook_data_Cleaned.csv** → Processed dataset for transfer learning
-- **hepworth_data_Cleaned.csv** → Preposed base dataset used to train base model
-- **robust_scaler.joblib** → Scaler original base dataset  
-- **README.txt** → This documentation
-
-For further details, refer to the project documentation or contact the development team.
+For additional information or inquiries, please refer to the project documentation or contact the development team.
